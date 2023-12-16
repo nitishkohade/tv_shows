@@ -1,7 +1,5 @@
 import React from "react";
 
-function EpisodeDetailPage() {
+export const EpisodeDetailPage = () => {
   return <>Episode details</>;
-}
-
-export default EpisodeDetailPage;
+};

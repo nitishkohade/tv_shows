@@ -1,7 +1,5 @@
 import React from "react";
 
-function ShowsPage() {
+export const ShowsPage = () => {
   return <>Shows page</>;
-}
-
-export default ShowsPage;
+};
