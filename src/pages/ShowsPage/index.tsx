@@ -1,13 +1,12 @@
-import React, { Suspense } from "react";
-import { ErrorBoundary } from "src/components/errorBoundary/errorBoundary";
+import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { MyErrorFallback } from "src/components/errorFallBack";
 import { ShowsList } from "src/features/shows/components/showsList";
 
 export const ShowsPage = () => {
   return (
-    <ErrorBoundary fallback="Something went wrong">
-      <Suspense fallback="loading.....">
-        <ShowsList />
-      </Suspense>
+    <ErrorBoundary FallbackComponent={MyErrorFallback}>
+      <ShowsList />
     </ErrorBoundary>
   );
 };
