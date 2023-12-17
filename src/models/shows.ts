@@ -9,7 +9,7 @@ type ImageProps = {
 
 // the api return a lot of key values in json but it is possible to retieve what are required from the backend
 export type ShowsProps = {
-  id: number;
+  id: string;
   name: string;
   rating: RatingProps;
   image: ImageProps;

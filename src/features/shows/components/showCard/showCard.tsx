@@ -1,5 +1,6 @@
 // src/features/Shows/components/ShowCard.tsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShowsProps } from "src/models/shows";
 import styled from "styled-components";
 
@@ -64,9 +65,10 @@ export const ShowCard: React.FC<{
   show: ShowsProps;
 }> = ({ show }) => {
   const [imageError, setImageError] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <CardContainer>
+    <CardContainer onClick={() => navigate(`/shows/${show.id}`)}>
       <ShowImage
         src={show.image?.medium}
         alt={show.name}
