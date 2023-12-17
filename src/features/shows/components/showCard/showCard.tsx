@@ -68,7 +68,7 @@ export const ShowCard: React.FC<{
   return (
     <CardContainer>
       <ShowImage
-        src={show.image.medium}
+        src={show.image?.medium}
         alt={show.name}
         showError={imageError}
         onError={() => setImageError(true)}
@@ -80,7 +80,7 @@ export const ShowCard: React.FC<{
       />
       <ShowContent>
         <ShowName>{show.name}</ShowName>
-        <ShowRating>Rating: {show.rating.average}</ShowRating>
+        <ShowRating>Rating: {show.rating?.average}</ShowRating>
       </ShowContent>
     </CardContainer>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { MyErrorFallback } from "src/components/errorFallBack";
-import { ShowsList } from "src/features/shows/components/showsList";
+import { ShowsList } from "src/features/shows/components";
 
 export const ShowsPage = () => {
   return (

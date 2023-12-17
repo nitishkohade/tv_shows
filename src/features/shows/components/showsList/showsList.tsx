@@ -5,8 +5,8 @@ import { ShowsProps } from "src/models/shows";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store/store";
 import { useFetch } from "src/hooks/useFetch";
-import { setShows } from "../showsSlice";
-import { ShowCard } from "./showCard";
+import { setShows } from "../../showsSlice";
+import { ShowCard } from "../";
 
 const Container = styled.div`
   display: flex;
