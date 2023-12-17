@@ -23,15 +23,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "eslint-comments", "prettier"],
   "rules": {
-    "array-bracket-spacing": [
-      "warn",
-      "always",
-      {
-        "singleValue": true,
-        "objectsInArrays": true,
-        "arraysInArrays": true
-      }
-    ],
     "camelcase": [
       "error",
       {
@@ -44,7 +35,6 @@
     "react/no-will-update-set-state": ["error"],
     "react/no-unused-state": ["error"],
     "react/no-unused-prop-types": ["error"],
-    "react/no-unused-class-component-methods": ["error"],
     "react/no-unsafe": [
       "off",
       {
@@ -60,6 +50,9 @@
     "eslint-comments/no-unlimited-disable": "error",
     "eslint-comments/no-unused-disable": "error",
     "react/function-component-definition": "off",
-    "@typescript-eslint/no-throw-literal": "off"
+    "@typescript-eslint/no-throw-literal": "off",
+    "no-promise-executor-return": "off",
+    "react/no-unused-class-component-methods": "off",
+    "consistent-return": "off"
   }
 }
