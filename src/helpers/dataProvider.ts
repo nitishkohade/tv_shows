@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://www.tvmaze.com/api";
+export const API_BASE_URL = "http://api.tvmaze.com";
 export const UNKNOWN_ERROR_MESSAGE = "Something went wrong";
 
 const handleApiError = async (response: Response) => {
