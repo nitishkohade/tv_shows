@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store/store";
 import { useFetch } from "src/hooks/useFetch";
 import { setShows } from "../../showsSlice";
-import { ShowCard } from "../";
+import { ShowCard } from "..";
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const LoadingMessage = styled.div`
 
 export const ShowsList: React.FC = () => {
   const shows = useSelector((state: RootState) => state.shows.shows);
-  const { data, loading } = useFetch<ShowsProps[]>("users");
+  const { data, loading } = useFetch<ShowsProps[]>("shows");
   const dispatch = useDispatch();
 
   useEffect(() => {

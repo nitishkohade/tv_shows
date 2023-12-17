@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ShowCard } from "./showCard";
 import { ShowsProps } from "src/models/shows";
+import { ShowCard } from "./showCard";
 
 describe("ShowCard", () => {
   const mockShow: ShowsProps = {

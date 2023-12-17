@@ -25,10 +25,8 @@ function App() {
     <Suspense fallback={<div>Loading Content</div>}>
       <Routes>
         <Route path="/" element={<ShowsPage />} />
-        <Route path="/show/:showId">
-          <Route index element={<ShowDetailPage />} />
-          <Route path="episode/:episodeId" element={<EpisodeDetailPage />} />
-        </Route>
+        <Route path="/shows/:showId" element={<ShowDetailPage />} />
+        <Route path="/episodes/:episodeId" element={<EpisodeDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

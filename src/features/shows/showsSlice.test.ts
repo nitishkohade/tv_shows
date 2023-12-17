@@ -1,5 +1,5 @@
-import showsReducer, { setShows } from "./showsSlice";
 import { ShowsProps } from "src/models/shows";
+import showsReducer, { setShows } from "./showsSlice";
 
 describe("showsSlice", () => {
   const initialState = { shows: [] };

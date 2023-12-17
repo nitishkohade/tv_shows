@@ -1,5 +1,5 @@
-import { fetchApiData, UNKNOWN_ERROR_MESSAGE } from "./dataProvider";
 import fetchMock from "jest-fetch-mock";
+import { fetchApiData, UNKNOWN_ERROR_MESSAGE } from "./dataProvider";
 
 describe("API Error Handling", () => {
   beforeEach(() => {

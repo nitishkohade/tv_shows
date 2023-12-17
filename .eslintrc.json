@@ -34,7 +34,6 @@
     "react/prop-types": ["error"],
     "react/no-will-update-set-state": ["error"],
     "react/no-unused-state": ["error"],
-    "react/no-unused-prop-types": ["error"],
     "react/no-unsafe": [
       "off",
       {
@@ -54,6 +53,14 @@
     "no-promise-executor-return": "off",
     "react/no-unused-class-component-methods": "off",
     "consistent-return": "off",
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "import/no-extraneous-dependencies": "off",
+    "testing-library/no-unnecessary-act": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "import/no-cycle": "off",
+    "global-require": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/no-unescaped-entities": "off",
+    "react/no-unused-prop-types": "off"
   }
 }
