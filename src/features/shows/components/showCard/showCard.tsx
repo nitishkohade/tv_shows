@@ -13,6 +13,7 @@ const CardContainer = styled.div`
   overflow: hidden;
   position: relative;
   flex-grow: 1;
+  cursor: pointer;
 `;
 
 const ShowImage = styled.img<{ showError: boolean }>`
