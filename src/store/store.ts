@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import showsReducer from "src/features/shows/showsSlice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    shows: showsReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
