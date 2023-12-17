@@ -7,8 +7,6 @@
   "extends": [
     "react-app",
     "react-app/jest",
-    "airbnb",
-    "airbnb-typescript",
     "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
@@ -48,19 +46,7 @@
     ],
     "eslint-comments/no-unlimited-disable": "error",
     "eslint-comments/no-unused-disable": "error",
-    "react/function-component-definition": "off",
-    "@typescript-eslint/no-throw-literal": "off",
-    "no-promise-executor-return": "off",
-    "react/no-unused-class-component-methods": "off",
-    "consistent-return": "off",
-    "no-param-reassign": ["error", { "props": false }],
-    "import/no-extraneous-dependencies": "off",
     "testing-library/no-unnecessary-act": "off",
-    "react/jsx-no-useless-fragment": "off",
-    "import/no-cycle": "off",
-    "global-require": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "react/no-unescaped-entities": "off",
-    "react/no-unused-prop-types": "off"
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }
