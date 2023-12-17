@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Header } from "src/components/header";
-import { fetchApiData } from "src/helpers/dataProvider";
 import { ShowsProps } from "src/models/shows";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "src/store/store";
+import { useFetch } from "src/hooks/useFetch";
+import { setShows } from "../showsSlice";
 import { ShowCard } from "./showCard";
 
 const Container = styled.div`
@@ -19,22 +22,13 @@ const LoadingMessage = styled.div`
 `;
 
 export const ShowsList: React.FC = () => {
-  const [shows, setShows] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchShows = async () => {
-    setLoading(true);
-    try {
-      const showsList = await fetchApiData<ShowsProps[]>("shows");
-      setShows((prevShows) => [...prevShows, ...showsList]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const shows = useSelector((state: RootState) => state.shows.shows);
+  const { data, loading } = useFetch<ShowsProps[]>("users");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchShows();
-  }, []);
+    dispatch(setShows(data || []));
+  }, [data, dispatch]);
 
   return (
     <Container>
