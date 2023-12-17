@@ -1,9 +1,8 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 import { useErrorBoundary } from "react-error-boundary";
 import { fetchApiData } from "src/helpers/dataProvider";
 import { useFetch } from "./useFetch";
 
-// Mocking the external modules
 jest.mock("react-error-boundary", () => ({
   useErrorBoundary: jest.fn(),
 }));

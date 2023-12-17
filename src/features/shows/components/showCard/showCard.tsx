@@ -1,4 +1,3 @@
-// src/features/Shows/components/ShowCard.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShowsProps } from "src/models/shows";
@@ -16,20 +15,18 @@ const CardContainer = styled.div`
   cursor: pointer;
 `;
 
-const ShowImage = styled.img<{ showError: boolean }>`
+const ShowImage = styled.img`
   width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 4px;
-  display: ${({ showError }) => (showError ? "none" : "block")};
 `;
 
-const FallbackImage = styled.img<{ showError: boolean }>`
+const FallbackImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
-  display: ${({ showError }) => (showError ? "block" : "none")};
 `;
 
 const ShowContent = styled.div`
@@ -65,22 +62,20 @@ const ShowRating = styled.div`
 export const ShowCard: React.FC<{
   show: ShowsProps;
 }> = ({ show }) => {
-  const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = useState<boolean>(false);
   const navigate = useNavigate();
 
   return (
     <CardContainer onClick={() => navigate(`/shows/${show.id}`)}>
-      <ShowImage
-        src={show.image?.medium}
-        alt={show.name}
-        showError={imageError}
-        onError={() => setImageError(true)}
-      />
-      <FallbackImage
-        src="/images/dummy_show.jpg" /* Replace with the path to your dummy image */
-        alt={show.name}
-        showError={imageError}
-      />
+      {!imageError ? (
+        <ShowImage
+          src={show.image?.medium}
+          alt={show.name}
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <FallbackImage src="/images/dummy_show.jpg" alt={show.name} />
+      )}
       <ShowContent>
         <ShowName>{show.name}</ShowName>
         <ShowRating>Rating: {show.rating?.average}</ShowRating>

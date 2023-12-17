@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import store from "src/store/store"; // Adjust this path to point to your store
+import store from "src/store/store";
 import { ShowsProps } from "src/models/shows";
 import { Shows } from "./shows";
 

@@ -23,11 +23,14 @@ const LoadingMessage = styled.div`
 
 export const Shows: React.FC = () => {
   const shows = useSelector((state: RootState) => state.shows.shows);
-  const { data, loading } = useFetch<ShowsProps[]>("shows");
   const dispatch = useDispatch();
+  const shouldFetch = shows.length === 0;
+  const { data, loading } = useFetch<ShowsProps[]>("shows", shouldFetch);
 
   useEffect(() => {
-    dispatch(setShows(data || []));
+    if (data) {
+      dispatch(setShows(data || []));
+    }
   }, [data, dispatch]);
 
   return (
