@@ -1,6 +1,6 @@
 import React from "react";
 import { ShowDetails } from "src/features/showDetails";
 
-export const ShowDetailPage = () => {
+export const ShowDetailsPage = () => {
   return <ShowDetails />;
 };

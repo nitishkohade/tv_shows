@@ -1,4 +1,4 @@
 export { ShowsPage } from "./showsPage";
-export { ShowDetailPage } from "./showDetailPage";
+export { ShowDetailsPage } from "./showDetailsPage";
 export { EpisodeDetailPage } from "./episodeDetailPage";
 export { NotFoundPage } from "./notFoundPage";
