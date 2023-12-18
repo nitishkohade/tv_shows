@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# TV Shows
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
+TV Shows is a React-based web application designed to provide users with comprehensive information about various TV shows.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **TV Shows Listing:** Browse a list of TV shows.
+- **Detailed TV Show View:** Access detailed information for each TV show, including its name, summary, rating, image and a list of episodes.
+- **Episode Details:** View details about each episode, such as name, rating, season, summary, date and image.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node
+- Yarn
 
-### `npm test`
+## How to Run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Follow these steps to set up and run the project:
 
-### `npm run build`
+1. **Install Dependencies:** Run `yarn install` to install the necessary dependencies.
+2. **Development Mode:** Execute `yarn start` to run the app in development mode.
+3. **Production Build:** Use `yarn run build` to build the app for production. Serve the build using a server.
+4. **Run Tests:** Use `yarn run test` to execute test cases.
+5. **Linting:** Run `yarn run lint` to identify linting warnings or errors.
+6. **Fix Linting Issues:** Execute `yarn run lint:fix` to automatically fix linting errors and warnings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Libraries Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React:** Primary library for building web components.
+- **Material UI:** For advanced UI components.
+- **Redux Toolkit:** For state management.
+- **TypeScript:** For type safety.
+- **date-fns:** For date operations.
+- **dompurify:** For sanitizing text.
+- **react-router-dom:** For client-side routing.
+- **react-error-boundary:** For error boundary management.
+- **Styled Components:** Initially introduced to evaluate its usage and behavior.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Application Structure
 
-### `npm run eject`
+- `components/`: Common reusable components.
+- `features/`: Business feature components like `showDetails`, `shows`, `episodeDetails`.
+- `helpers/`: Utilities such as the `dataProvider` library for API calls.
+- `hooks/`: Custom hooks, such as `useFetch`, which utilize `dataProvider` for web resources or APIs.
+- `models/`: Definitions of data structures for episodes and shows.
+- `pages/`: Individual pages accessible through navigation.
+- `store/`: Redux store configuration and reducer management.
+- `utils/`: Common utility functions.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Redux Store
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `shows`: Manages the list of TV shows.
+- `showDetails`: Stores details of the selected show, including episodes and other show details.
+- `episodeDetails`: Maintains the details of individual episodes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Other Aspects
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Performance:** Utilizes lazy loading, memoization, and Redux store to minimize API calls.
+- **Error Handling:** Implemented using ErrorBoundary.
+- **Linting:** Enforces coding standards.
+- **Testing:** Includes test cases to verify component behavior.
+- **Caching:** Achieved through the Redux store.
+- **Responsiveness:** Ensured using Material UI and styled-component's CSS-in-JS.
 
-## Learn More
+## Note
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+While Styled Components are not required due to the use of Material UI they are included in this project as per specific request to complete this assignment
