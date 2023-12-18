@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 
 interface ShowsState {
-  shows: ShowsProps[];
+  shows: ShowProps[];
 }
 
 const initialState: ShowsState = {
@@ -13,7 +13,7 @@ const showsSlice = createSlice({
   name: "shows",
   initialState,
   reducers: {
-    setShows: (state, action: PayloadAction<ShowsProps[]>) => {
+    setShows: (state, action: PayloadAction<ShowProps[]>) => {
       state.shows = action.payload;
     },
   },

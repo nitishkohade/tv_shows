@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
@@ -60,7 +60,7 @@ const ShowRating = styled.div`
 `;
 
 export const ShowCard: React.FC<{
-  show: ShowsProps;
+  show: ShowProps;
 }> = ({ show }) => {
   const [imageError, setImageError] = useState<boolean>(false);
   const navigate = useNavigate();

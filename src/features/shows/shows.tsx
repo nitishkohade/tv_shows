@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Header } from "src/components/header";
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store/store";
 import { useFetch } from "src/hooks/useFetch";
@@ -25,7 +25,7 @@ export const Shows: React.FC = () => {
   const shows = useSelector((state: RootState) => state.shows.shows);
   const dispatch = useDispatch();
   const shouldFetch = shows.length === 0;
-  const { data, loading } = useFetch<ShowsProps[]>("shows", shouldFetch);
+  const { data, loading } = useFetch<ShowProps[]>("shows", shouldFetch);
 
   useEffect(() => {
     if (data) {

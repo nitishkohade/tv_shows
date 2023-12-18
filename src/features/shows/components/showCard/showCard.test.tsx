@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 import { ShowCard } from "./showCard";
 
 jest.mock("react-router-dom", () => ({
@@ -8,7 +8,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("ShowCard", () => {
-  const mockShow: ShowsProps = {
+  const mockShow: ShowProps = {
     name: "Show",
     id: "1",
     image: {

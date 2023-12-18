@@ -1,9 +1,9 @@
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 import showsReducer, { setShows } from "./showsSlice";
 
 describe("showsSlice", () => {
   const initialState = { shows: [] };
-  const mockShows: Partial<ShowsProps>[] = [
+  const mockShows: Partial<ShowProps>[] = [
     { id: "1", name: "Show 1" },
     { id: "2", name: "Show 2" },
   ];
@@ -15,7 +15,7 @@ describe("showsSlice", () => {
   it("should handle setShows", () => {
     const previousState = { shows: [] };
     expect(
-      showsReducer(previousState, setShows(mockShows as ShowsProps[])),
+      showsReducer(previousState, setShows(mockShows as ShowProps[])),
     ).toEqual({
       shows: mockShows,
     });

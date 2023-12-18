@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "src/store/store";
-import { ShowsProps } from "src/models/shows";
+import { ShowProps } from "src/models/show";
 import { Shows } from "./shows";
 
 jest.mock("src/hooks/useFetch", () => ({
@@ -14,7 +14,7 @@ jest.mock("src/components/header", () => ({
 }));
 
 jest.mock("./components", () => ({
-  ShowCard: ({ show }: { show: ShowsProps }) => <div>{show.name}</div>,
+  ShowCard: ({ show }: { show: ShowProps }) => <div>{show.name}</div>,
 }));
 
 describe("Shows", () => {
