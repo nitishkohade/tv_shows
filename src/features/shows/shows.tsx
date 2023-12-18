@@ -7,18 +7,13 @@ import { RootState } from "src/store/store";
 import { useFetch } from "src/hooks/useFetch";
 import { setShows } from "./showsSlice";
 import { ShowCard } from "./components";
+import { Loader } from "src/components/loader";
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 10px;
-`;
-
-const LoadingMessage = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px;
 `;
 
 export const Shows: React.FC = () => {
@@ -34,10 +29,11 @@ export const Shows: React.FC = () => {
   }, [data, dispatch]);
 
   return (
-    <Container>
-      <Header text="SHOWS" />
-      {shows?.map((show) => <ShowCard key={show.id} show={show} />)}
-      {loading && <LoadingMessage>Loading...</LoadingMessage>}
-    </Container>
+    <Loader loading={loading}>
+      <Container>
+        <Header text="SHOWS" />
+        {shows?.map((show) => <ShowCard key={show.id} show={show} />)}
+      </Container>
+    </Loader>
   );
 };

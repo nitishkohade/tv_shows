@@ -14,6 +14,7 @@ import {
 import { ShowIdProps } from "../../models";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
 import { roundHalf } from "src/utils/mathUtils";
+import { Loader } from "src/components/loader";
 
 // Component for displaying the main details of a show
 export const MainSection = ({ showId }: ShowIdProps) => {
@@ -40,7 +41,7 @@ export const MainSection = ({ showId }: ShowIdProps) => {
   }
 
   // if showDetails can't be fetched locally then call the api
-  const { data: newShowDetails } = useFetch<ShowProps>(
+  const { data: newShowDetails, loading } = useFetch<ShowProps>(
     `shows/${showId}`,
     !showDetails,
   );
@@ -54,25 +55,29 @@ export const MainSection = ({ showId }: ShowIdProps) => {
   }, [newShowDetails, dispatch]);
 
   return (
-    <Card sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}>
-      <CardMedia
-        component="img"
-        sx={{ width: 300 }}
-        image={showDetails?.image?.medium}
-        alt={`${showDetails?.name} Show Cover`}
-      />
-      <CardContent sx={{ pt: 0 }}>
-        <Typography variant="h5" color="text.secondary">
-          {showDetails?.name}
-        </Typography>
-        <Rating
-          sx={{ mb: 2 }}
-          value={roundHalf(showDetails?.rating?.average || "")}
-          precision={0.1}
-          readOnly
+    <Loader loading={loading}>
+      <Card
+        sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}
+      >
+        <CardMedia
+          component="img"
+          sx={{ width: 300 }}
+          image={showDetails?.image?.medium}
+          alt={`${showDetails?.name} Show Cover`}
         />
-        <SanitizedHtmlDisplay htmlContent={showDetails?.summary || ""} />
-      </CardContent>
-    </Card>
+        <CardContent sx={{ pt: 0 }}>
+          <Typography variant="h5" color="text.secondary">
+            {showDetails?.name}
+          </Typography>
+          <Rating
+            sx={{ mb: 2 }}
+            value={roundHalf(showDetails?.rating?.average || "")}
+            precision={0.1}
+            readOnly
+          />
+          <SanitizedHtmlDisplay htmlContent={showDetails?.summary || ""} />
+        </CardContent>
+      </Card>
+    </Loader>
   );
 };

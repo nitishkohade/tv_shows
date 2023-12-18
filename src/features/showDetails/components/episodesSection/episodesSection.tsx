@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { formatDate, formatNumber } from "../../utils";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "src/components/loader";
 
 type ColumnProps = {
   label: string;
@@ -37,7 +38,7 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
   const shouldFetchEpisodes = currentEpisodes?.length === 0;
 
   // if episodes is empty then call the api
-  const { data: newEpisodes } = useFetch<[]>(
+  const { data: newEpisodes, loading } = useFetch<[]>(
     `shows/${showId}/episodes`,
     shouldFetchEpisodes,
   );
@@ -76,7 +77,7 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
   ];
 
   return (
-    <>
+    <Loader loading={loading}>
       {Object.entries(groupedEpisodes).map(([season, episodes]) => (
         <TableContainer
           component={Paper}
@@ -161,6 +162,6 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
           </Table>
         </TableContainer>
       ))}
-    </>
+    </Loader>
   );
 };
