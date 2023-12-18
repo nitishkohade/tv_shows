@@ -63,7 +63,7 @@ export const MainSection = ({ showId }: ShowIdProps) => {
         <Rating
           sx={{ mb: 2 }}
           value={roundNumberDividedByTwo(
-            showDetailsFromStore?.rating.average || "",
+            showDetailsFromStore?.rating?.average || "",
           )}
           precision={0.1}
           readOnly

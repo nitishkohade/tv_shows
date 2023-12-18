@@ -15,6 +15,9 @@ const initialState = {
         name: "Test Show",
         image: { medium: "test.jpg" },
         summary: "<p>Test Summary</p>",
+        rating: {
+          average: 3,
+        },
       },
     ],
   },
