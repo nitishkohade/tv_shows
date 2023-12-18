@@ -3,13 +3,13 @@ import { EpisodeProps } from "src/models/episode";
 import { ShowProps } from "src/models/show";
 
 interface ShowDetailsState {
-  showDetails: ShowProps | {};
+  showDetails: ShowProps | null;
   episodes: EpisodeProps[];
   name: string;
 }
 
 const initialState: ShowDetailsState = {
-  showDetails: {},
+  showDetails: null,
   episodes: [],
   name: "",
 };
