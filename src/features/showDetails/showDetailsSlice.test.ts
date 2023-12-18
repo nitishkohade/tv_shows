@@ -8,7 +8,7 @@ import { EpisodeProps } from "src/models/episode";
 
 describe("showDetailsSlice", () => {
   const initialState = {
-    showDetails: null,
+    showDetails: {},
     episodes: [],
     name: "",
   };
