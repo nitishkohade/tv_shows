@@ -15,6 +15,7 @@ import { setEpisodeDetails } from "./episodeDetailsSlice";
 import { useFetch } from "src/hooks/useFetch";
 import { EpisodeProps } from "src/models/episode";
 import { roundNumberDividedByTwo } from "./utils";
+import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
 
 export const EpisodeDetails: React.FC = () => {
   const { episodeId } = useParams();
@@ -84,9 +85,9 @@ export const EpisodeDetails: React.FC = () => {
               readOnly
             />
             <Typography variant="body2" color="text.secondary">
-              {episodeDetailsFromStore?.summary
-                .replace(/<p>/g, "")
-                .replace(/<\/p>/g, "")}
+              <SanitizedHtmlDisplay
+                htmlContent={episodeDetailsFromStore?.summary || ""}
+              />
             </Typography>
           </CardContent>
         </Card>

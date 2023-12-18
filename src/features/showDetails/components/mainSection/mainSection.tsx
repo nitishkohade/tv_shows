@@ -6,6 +6,7 @@ import { setName, setShowDetails } from "../../showDetailsSlice";
 import { ShowProps } from "src/models/show";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { ShowIdProps } from "../../models";
+import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
 
 export const MainSection = ({ showId }: ShowIdProps) => {
   const dispatch = useDispatch();
@@ -52,9 +53,9 @@ export const MainSection = ({ showId }: ShowIdProps) => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {showDetailsFromStore?.summary
-            .replace(/<p>/g, "")
-            .replace(/<\/p>/g, "")}
+          <SanitizedHtmlDisplay
+            htmlContent={showDetailsFromStore?.summary || ""}
+          />
         </Typography>
       </CardContent>
     </Card>
