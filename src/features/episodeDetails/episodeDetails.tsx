@@ -17,44 +17,46 @@ import { EpisodeProps } from "src/models/episode";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
 import { roundNumberDividedByTwo } from "src/utils/mathUtils";
 
+// Component for displaying the details of an episode
 export const EpisodeDetails: React.FC = () => {
   const { episodeId } = useParams();
-
   const dispatch = useDispatch();
 
+  // Accessing episodes from showDetails state
   const episodes = useSelector(
     (state: RootState) => state.showDetails.episodes,
   );
-
-  let episodeDetailsFromStore = useSelector(
+  // Accessing episodeDetails from episodeDetails state
+  let episodeDetails = useSelector(
     (state: RootState) => state.episodeDetails.episodeDetails,
   );
 
-  episodeDetailsFromStore =
-    String(episodeDetailsFromStore?.id) !== String(episodeId)
-      ? null
-      : episodeDetailsFromStore;
+  // Check if the details associated with episodeId from url is present or not
+  const isEpisodeDetailsPresent =
+    String(episodeDetails?.id) === String(episodeId);
 
-  if (!episodeDetailsFromStore) {
-    episodeDetailsFromStore =
+  // if episode details not present then request a new one from the already stored episodes in showDetails state
+  if (!isEpisodeDetailsPresent) {
+    episodeDetails =
       episodes?.find((episode) => String(episode.id) === String(episodeId)) ||
       null;
-    if (episodeDetailsFromStore) {
-      dispatch(setEpisodeDetails(episodeDetailsFromStore));
+    if (episodeDetails) {
+      dispatch(setEpisodeDetails(episodeDetails));
     }
   }
 
-  const { data: episodeDetailFromApi } = useFetch<EpisodeProps>(
+  // if episodeDetails can't be fetched locally then call the api
+  const { data: newEpisodeDetails } = useFetch<EpisodeProps>(
     `episodes/${episodeId}`,
-    !episodeDetailsFromStore,
+    !episodeDetails,
   );
 
   // Saving episodeDetails if not present
   useEffect(() => {
-    if (episodeDetailFromApi) {
-      dispatch(setEpisodeDetails(episodeDetailFromApi));
+    if (newEpisodeDetails) {
+      dispatch(setEpisodeDetails(newEpisodeDetails));
     }
-  }, [episodeDetailFromApi, dispatch]);
+  }, [newEpisodeDetails, dispatch]);
 
   return (
     <Box p={1}>
@@ -72,24 +74,22 @@ export const EpisodeDetails: React.FC = () => {
           <CardMedia
             component="img"
             sx={{ width: 500 }}
-            image={episodeDetailsFromStore?.image?.original}
-            alt={`${episodeDetailsFromStore?.name} Show Cover`}
+            image={episodeDetails?.image?.original}
+            alt={`${episodeDetails?.name} Show Cover`}
           />
           <CardContent sx={{ pt: 0 }}>
             <Typography variant="h5" color="text.secondary">
-              {episodeDetailsFromStore?.name}
+              {episodeDetails?.name}
             </Typography>
             <Rating
               sx={{ mb: 2 }}
               value={roundNumberDividedByTwo(
-                episodeDetailsFromStore?.rating.average || "",
+                episodeDetails?.rating?.average || "",
               )}
               precision={0.1}
               readOnly
             />
-            <SanitizedHtmlDisplay
-              htmlContent={episodeDetailsFromStore?.summary || ""}
-            />
+            <SanitizedHtmlDisplay htmlContent={episodeDetails?.summary || ""} />
           </CardContent>
         </Card>
       </Box>
