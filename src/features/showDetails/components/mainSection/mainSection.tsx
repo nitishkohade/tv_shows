@@ -40,18 +40,18 @@ export const MainSection = ({ showId }: ShowIdProps) => {
   }
 
   // if showDetails can't be fetched locally then call the api
-  const { data: showDetailFromApi } = useFetch<ShowProps>(
+  const { data: newShowDetails } = useFetch<ShowProps>(
     `shows/${showId}`,
     !showDetails,
   );
 
   // Saving showDetails if not present
   useEffect(() => {
-    if (showDetailFromApi) {
-      dispatch(setShowDetails(showDetailFromApi));
-      dispatch(setName(showDetailFromApi.name));
+    if (newShowDetails) {
+      dispatch(setShowDetails(newShowDetails));
+      dispatch(setName(newShowDetails.name));
     }
-  }, [showDetailFromApi, dispatch]);
+  }, [newShowDetails, dispatch]);
 
   return (
     <Card sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}>

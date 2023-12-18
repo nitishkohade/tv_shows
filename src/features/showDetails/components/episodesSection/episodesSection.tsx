@@ -17,29 +17,40 @@ import {
 import { formatDate, convertNumberToFloat } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
+type ColumnProps = {
+  label: string;
+  accessor: string;
+  align?: "right" | "left" | "center" | "inherit" | "justify";
+};
+
+// Component for displaying the list of episodes associated with a show
 export const EpisodesSection = ({ showId }: ShowIdProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let episodesFromStore = useSelector(
+  // Fetching episodes from showDetails state
+  const currentEpisodes = useSelector(
     (state: RootState) => state.showDetails.episodes,
   );
-  const shouldFetchEpisodes = episodesFromStore?.length === 0;
 
-  const { data: episodesFromApi } = useFetch<[]>(
+  // checking if episodes is empty
+  const shouldFetchEpisodes = currentEpisodes?.length === 0;
+
+  // if episodes is empty then call the api
+  const { data: newEpisodes } = useFetch<[]>(
     `shows/${showId}/episodes`,
     shouldFetchEpisodes,
   );
 
   //Saving Episodes
   useEffect(() => {
-    if (episodesFromApi) {
-      dispatch(setEpisodes(episodesFromApi));
+    if (newEpisodes) {
+      dispatch(setEpisodes(newEpisodes));
     }
-  }, [episodesFromApi, dispatch]);
+  }, [newEpisodes, dispatch]);
 
   const groupedEpisodes = useMemo(() => {
-    return episodesFromStore.reduce((acc: Record<string, any[]>, episode) => {
+    return currentEpisodes.reduce((acc: Record<string, any[]>, episode) => {
       const season = episode.season;
       if (!acc[season]) {
         acc[season] = [];
@@ -54,7 +65,15 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
       });
       return acc;
     }, {});
-  }, [episodesFromStore]);
+  }, [currentEpisodes]);
+
+  // Column configuration
+  const columns: ColumnProps[] = [
+    { label: "Number", accessor: "number", align: "left" },
+    { label: "Date", accessor: "date", align: "left" },
+    { label: "Name", accessor: "name", align: "left" },
+    { label: "Score", accessor: "score", align: "right" },
+  ];
 
   return (
     <>
@@ -105,10 +124,11 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
           <Table sx={{ minWidth: 300 }} aria-label={`Season ${season} table`}>
             <TableHead>
               <TableRow>
-                <TableCell>Number</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Score</TableCell>
+                {columns.map((column) => (
+                  <TableCell key={column.label} align={column.align}>
+                    {column.label}
+                  </TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -123,12 +143,18 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
                     navigate(`/episodes/${episode.id}`);
                   }}
                 >
-                  <TableCell component="th" scope="row">
+                  {/* <TableCell component="th" scope="row">
                     {episode.number}
                   </TableCell>
                   <TableCell>{episode.date}</TableCell>
                   <TableCell>{episode.name}</TableCell>
-                  <TableCell align="right">{episode.score}</TableCell>
+                  <TableCell align="right">{episode.score}</TableCell> */}
+
+                  {columns.map((column) => (
+                    <TableCell key={column.label} align={column.align}>
+                      {episode[column.accessor]}
+                    </TableCell>
+                  ))}
                 </TableRow>
               ))}
             </TableBody>
