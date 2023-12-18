@@ -14,7 +14,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { formatDate, convertNumberToFloat } from "../../utils";
+import { formatDate, formatNumber } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 type ColumnProps = {
@@ -60,7 +60,7 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
         number: episode.number,
         date: formatDate(episode.airdate),
         name: episode.name,
-        score: convertNumberToFloat(episode?.rating?.average),
+        score: formatNumber(episode?.rating?.average),
         season: episode.season,
       });
       return acc;

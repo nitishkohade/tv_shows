@@ -1,4 +1,4 @@
-import { formatDate, convertNumberToFloat } from "./utils";
+import { formatDate, formatNumber } from "./utils";
 
 describe("formatDate", () => {
   it("formats valid date strings correctly", () => {
@@ -10,8 +10,8 @@ describe("formatDate", () => {
   });
 });
 
-describe("convertNumberToFloat", () => {
+describe("formatNumber", () => {
   it("converts numbers to a string with one decimal place", () => {
-    expect(convertNumberToFloat(10)).toBe("10.0");
+    expect(formatNumber(10)).toBe("10.0");
   });
 });

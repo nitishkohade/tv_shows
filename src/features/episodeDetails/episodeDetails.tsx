@@ -15,7 +15,7 @@ import { setEpisodeDetails } from "./episodeDetailsSlice";
 import { useFetch } from "src/hooks/useFetch";
 import { EpisodeProps } from "src/models/episode";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
-import { roundNumberDividedByTwo } from "src/utils/mathUtils";
+import { roundHalf } from "src/utils/mathUtils";
 
 // Component for displaying the details of an episode
 export const EpisodeDetails: React.FC = () => {
@@ -83,9 +83,7 @@ export const EpisodeDetails: React.FC = () => {
             </Typography>
             <Rating
               sx={{ mb: 2 }}
-              value={roundNumberDividedByTwo(
-                episodeDetails?.rating?.average || "",
-              )}
+              value={roundHalf(episodeDetails?.rating?.average || "")}
               precision={0.1}
               readOnly
             />

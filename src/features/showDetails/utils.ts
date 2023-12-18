@@ -1,18 +1,17 @@
 import { format } from "date-fns";
 
 export const formatDate = (dateString: string) => {
-  try {
-    const date = new Date(dateString);
-    return format(date, "MMM d, yyyy");
-  } catch (_) {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
     return "";
   }
+  return format(date, "MMM d, yyyy");
 };
 
-export const convertNumberToFloat = (num: number) => {
-  try {
-    return parseInt(String(num)).toFixed(1);
-  } catch (_) {
-    return 0.0;
+export function formatNumber(num: number) {
+  const parsedNumber = parseFloat(String(num));
+  if (isNaN(parsedNumber)) {
+    return "0.0";
   }
-};
+  return parsedNumber.toFixed(1);
+}

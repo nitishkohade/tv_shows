@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { ShowIdProps } from "../../models";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
-import { roundNumberDividedByTwo } from "src/utils/mathUtils";
+import { roundHalf } from "src/utils/mathUtils";
 
 // Component for displaying the main details of a show
 export const MainSection = ({ showId }: ShowIdProps) => {
@@ -67,7 +67,7 @@ export const MainSection = ({ showId }: ShowIdProps) => {
         </Typography>
         <Rating
           sx={{ mb: 2 }}
-          value={roundNumberDividedByTwo(showDetails?.rating?.average || "")}
+          value={roundHalf(showDetails?.rating?.average || "")}
           precision={0.1}
           readOnly
         />
