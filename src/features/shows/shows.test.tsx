@@ -32,7 +32,7 @@ describe("Shows", () => {
         <Shows />
       </Provider>,
     );
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    expect(screen.getByRole("progressbar")).toBeInTheDocument();
   });
 
   it("renders shows when data is fetched", () => {
