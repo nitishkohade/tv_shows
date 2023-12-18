@@ -14,8 +14,8 @@ import { RootState } from "src/store/store";
 import { setEpisodeDetails } from "./episodeDetailsSlice";
 import { useFetch } from "src/hooks/useFetch";
 import { EpisodeProps } from "src/models/episode";
-import { roundNumberDividedByTwo } from "./utils";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
+import { roundNumberDividedByTwo } from "src/utils/mathUtils";
 
 export const EpisodeDetails: React.FC = () => {
   const { episodeId } = useParams();
@@ -59,7 +59,7 @@ export const EpisodeDetails: React.FC = () => {
   return (
     <Box p={1}>
       <Box mb={1}>
-        <Header text={episodeDetailsFromStore?.name || ""} />
+        <Header text={"EPISODE"} />
       </Box>
       <Box sx={{ width: "100%" }}>
         <Card
@@ -75,7 +75,10 @@ export const EpisodeDetails: React.FC = () => {
             image={episodeDetailsFromStore?.image?.original}
             alt={`${episodeDetailsFromStore?.name} Show Cover`}
           />
-          <CardContent>
+          <CardContent sx={{ pt: 0 }}>
+            <Typography variant="h5" color="text.secondary">
+              {episodeDetailsFromStore?.name}
+            </Typography>
             <Rating
               sx={{ mb: 2 }}
               value={roundNumberDividedByTwo(
@@ -84,11 +87,9 @@ export const EpisodeDetails: React.FC = () => {
               precision={0.1}
               readOnly
             />
-            <Typography variant="body2" color="text.secondary">
-              <SanitizedHtmlDisplay
-                htmlContent={episodeDetailsFromStore?.summary || ""}
-              />
-            </Typography>
+            <SanitizedHtmlDisplay
+              htmlContent={episodeDetailsFromStore?.summary || ""}
+            />
           </CardContent>
         </Card>
       </Box>

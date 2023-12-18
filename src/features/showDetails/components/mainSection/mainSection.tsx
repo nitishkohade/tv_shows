@@ -4,9 +4,16 @@ import { useFetch } from "src/hooks/useFetch";
 import { RootState } from "src/store/store";
 import { setName, setShowDetails } from "../../showDetailsSlice";
 import { ShowProps } from "src/models/show";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Rating,
+  Typography,
+} from "@mui/material";
 import { ShowIdProps } from "../../models";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
+import { roundNumberDividedByTwo } from "src/utils/mathUtils";
 
 export const MainSection = ({ showId }: ShowIdProps) => {
   const dispatch = useDispatch();
@@ -42,21 +49,28 @@ export const MainSection = ({ showId }: ShowIdProps) => {
   }, [showDetailFromApi, dispatch]);
 
   return (
-    <Card
-      sx={{ p: 0, display: "flex", flexDirection: { xs: "column", md: "row" } }}
-    >
+    <Card sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" } }}>
       <CardMedia
         component="img"
         sx={{ width: 300 }}
         image={showDetailsFromStore?.image?.medium}
         alt={`${showDetailsFromStore?.name} Show Cover`}
       />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          <SanitizedHtmlDisplay
-            htmlContent={showDetailsFromStore?.summary || ""}
-          />
+      <CardContent sx={{ pt: 0 }}>
+        <Typography variant="h5" color="text.secondary">
+          {showDetailsFromStore?.name}
         </Typography>
+        <Rating
+          sx={{ mb: 2 }}
+          value={roundNumberDividedByTwo(
+            showDetailsFromStore?.rating.average || "",
+          )}
+          precision={0.1}
+          readOnly
+        />
+        <SanitizedHtmlDisplay
+          htmlContent={showDetailsFromStore?.summary || ""}
+        />
       </CardContent>
     </Card>
   );

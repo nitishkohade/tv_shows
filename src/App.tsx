@@ -6,7 +6,7 @@ const ShowsPage = lazy(() =>
 );
 const ShowDetailPage = lazy(() =>
   import("./pages").then((module) => ({
-    default: module.ShowDetailPage,
+    default: module.ShowDetailsPage,
   })),
 );
 const EpisodeDetailPage = lazy(() =>
