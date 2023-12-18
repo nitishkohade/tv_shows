@@ -16,6 +16,7 @@ import { useFetch } from "src/hooks/useFetch";
 import { EpisodeProps } from "src/models/episode";
 import { SanitizedHtmlDisplay } from "src/components/sanitizedHtmlDisplay";
 import { roundHalf } from "src/utils/mathUtils";
+import { Loader } from "src/components/loader";
 
 // Component for displaying the details of an episode
 export const EpisodeDetails: React.FC = () => {
@@ -46,7 +47,7 @@ export const EpisodeDetails: React.FC = () => {
   }
 
   // if episodeDetails can't be fetched locally then call the api
-  const { data: newEpisodeDetails } = useFetch<EpisodeProps>(
+  const { data: newEpisodeDetails, loading } = useFetch<EpisodeProps>(
     `episodes/${episodeId}`,
     !episodeDetails,
   );
@@ -59,38 +60,42 @@ export const EpisodeDetails: React.FC = () => {
   }, [newEpisodeDetails, dispatch]);
 
   return (
-    <Box p={1}>
-      <Box mb={1}>
-        <Header text={"EPISODE"} />
-      </Box>
-      <Box sx={{ width: "100%" }}>
-        <Card
-          sx={{
-            p: 0,
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-          }}
-        >
-          <CardMedia
-            component="img"
-            sx={{ width: 500 }}
-            image={episodeDetails?.image?.original}
-            alt={`${episodeDetails?.name} Show Cover`}
-          />
-          <CardContent sx={{ pt: 0 }}>
-            <Typography variant="h5" color="text.secondary">
-              {episodeDetails?.name}
-            </Typography>
-            <Rating
-              sx={{ mb: 2 }}
-              value={roundHalf(episodeDetails?.rating?.average || "")}
-              precision={0.1}
-              readOnly
+    <Loader loading={loading}>
+      <Box p={1}>
+        <Box mb={1}>
+          <Header text={"EPISODE"} />
+        </Box>
+        <Box sx={{ width: "100%" }}>
+          <Card
+            sx={{
+              p: 0,
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
+            <CardMedia
+              component="img"
+              sx={{ width: 500 }}
+              image={episodeDetails?.image?.original}
+              alt={`${episodeDetails?.name} Show Cover`}
             />
-            <SanitizedHtmlDisplay htmlContent={episodeDetails?.summary || ""} />
-          </CardContent>
-        </Card>
+            <CardContent sx={{ pt: 0 }}>
+              <Typography variant="h5" color="text.secondary">
+                {episodeDetails?.name}
+              </Typography>
+              <Rating
+                sx={{ mb: 2 }}
+                value={roundHalf(episodeDetails?.rating?.average || "")}
+                precision={0.1}
+                readOnly
+              />
+              <SanitizedHtmlDisplay
+                htmlContent={episodeDetails?.summary || ""}
+              />
+            </CardContent>
+          </Card>
+        </Box>
       </Box>
-    </Box>
+    </Loader>
   );
 };
