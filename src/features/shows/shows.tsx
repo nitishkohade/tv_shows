@@ -24,7 +24,7 @@ const LoadingMessage = styled.div`
 export const Shows: React.FC = () => {
   const shows = useSelector((state: RootState) => state.shows.shows);
   const dispatch = useDispatch();
-  const shouldFetch = shows.length === 0;
+  const shouldFetch = shows?.length === 0;
   const { data, loading } = useFetch<ShowProps[]>("shows", shouldFetch);
 
   useEffect(() => {
@@ -36,9 +36,7 @@ export const Shows: React.FC = () => {
   return (
     <Container>
       <Header text="SHOWS" />
-      {shows.map((show) => (
-        <ShowCard key={show.id} show={show} />
-      ))}
+      {shows?.map((show) => <ShowCard key={show.id} show={show} />)}
       {loading && <LoadingMessage>Loading...</LoadingMessage>}
     </Container>
   );

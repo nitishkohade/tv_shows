@@ -24,7 +24,7 @@ export const EpisodesSection = ({ showId }: ShowIdProps) => {
   let episodesFromStore = useSelector(
     (state: RootState) => state.showDetails.episodes,
   );
-  const shouldFetchEpisodes = episodesFromStore.length === 0;
+  const shouldFetchEpisodes = episodesFromStore?.length === 0;
 
   const { data: episodesFromApi } = useFetch<[]>(
     `shows/${showId}/episodes`,
