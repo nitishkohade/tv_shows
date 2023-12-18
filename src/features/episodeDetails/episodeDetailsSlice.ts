@@ -2,23 +2,23 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { EpisodeProps } from "src/models/episode";
 
 interface EpisodeDetailsState {
-  episode: EpisodeProps | {};
+  episodeDetails: EpisodeProps | null;
 }
 
 const initialState: EpisodeDetailsState = {
-  episode: {},
+  episodeDetails: null,
 };
 
 const episodeDetailsSlice = createSlice({
   name: "episodeDetails",
   initialState,
   reducers: {
-    setEpisode: (state, action: PayloadAction<EpisodeProps>) => {
-      state.episode = action.payload;
+    setEpisodeDetails: (state, action: PayloadAction<EpisodeProps>) => {
+      state.episodeDetails = action.payload;
     },
   },
 });
 
-export const { setEpisode } = episodeDetailsSlice.actions;
+export const { setEpisodeDetails } = episodeDetailsSlice.actions;
 
 export default episodeDetailsSlice.reducer;
