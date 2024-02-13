@@ -66,4 +66,4 @@ Follow these steps to set up and run the project:
 
 ## Note
 
-While Styled Components are not required due to the use of Material UI they are included in this project as per specific request to complete this assignment
+While Styled Components are not required due to the use of Material UI they are included in this project as per specific request to complete this assignmentt
